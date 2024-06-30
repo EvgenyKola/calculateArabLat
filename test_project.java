@@ -2,7 +2,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import com.example.calc;
 import com.example.exception;
 
 public class test_project {
