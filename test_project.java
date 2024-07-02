@@ -26,7 +26,7 @@ public class test_project {
         calc (string);
     }
 
-    public static void calc (String arg) {
+    public static void calc (String arg){
         int o = 0;
         Boolean lat = false;
         Boolean rom = false;
@@ -37,6 +37,7 @@ public class test_project {
 
         for (String s: arg.toLowerCase().split("")) {
             try {
+                
                 int i = Integer.parseInt (s);
                 lat = true;
                 calcArray [o] += s;
@@ -57,7 +58,9 @@ public class test_project {
         }
 
         if (contune == true & lat == true) {
-            latCalc (calcArray, o, false);
+            try { latCalc (calcArray, o, false);
+            } catch (exception e) {}
+
         }
         else if (contune == true & rom == true) {
             romToLat (calcArray, o);
@@ -105,7 +108,10 @@ public class test_project {
             if (calcElement != 0) {result = String.valueOf(calcElement);}
             calcArray[i] = result;
         }
-        latCalc (calcArray, arg, true);
+
+        try {    latCalc (calcArray, arg, true);
+        } catch (exception e) {}
+
     }
 
     public static void latToRom (int arg) {
@@ -125,11 +131,12 @@ public class test_project {
         start ();
     }
  
-    public static void latCalc (String[] args, int arg, Boolean rom) {
+    public static void latCalc (String[] args, int arg, Boolean rom) throws exception{
         int result=0;
         int n=0;
     
         for (int i = 0; i <= arg; i++) {
+
                 if (i == 0 ) {
                     n = Integer.parseInt (args[i]);
                     result = n;
@@ -146,14 +153,16 @@ public class test_project {
                         case "/": result = result / n; break; 
                     }
                 }
+
+                if (n>10) {
+                     throw new exception("Ошибка ввода данных");
+                }
         }
 
-        if (operand > 1){
-            System.out.print("Количество операндов не соответствует заданию, но результат вы всё равно узнаете.\n");
-        }
-     
         if (rom & result > 0 && result < 4000) {latToRom(result);}
-        else if (rom) {System.out.print("Вне диапазона допустимых римских числе (1—3999). Результат: " + result+"\n"); start ();}
+        else if (rom) {
+            throw new exception("Ошибка ввода данных");
+        }
         else {System.out.print("Результат: " + result+"\n"); start ();}
     }
 }
