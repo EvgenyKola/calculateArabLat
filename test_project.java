@@ -154,7 +154,7 @@ public class test_project {
                     }
                 }
 
-                if (n>10) {
+                if (n>10 || n<1) {
                      throw new exception("Ошибка ввода данных");
                 }
         }
