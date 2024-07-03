@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -23,10 +24,13 @@ public class test_project {
         System.out.println("Введите выражение");
         Scanner keyboardScan = new Scanner (System.in);
         String string = keyboardScan.nextLine();
-        calc (string);
+
+        try { calc (string);
+        } catch (exception e) {}
+        
     }
 
-    public static void calc (String arg){
+    public static void calc (String arg) throws exception{
         int o = 0;
         Boolean lat = false;
         Boolean rom = false;
@@ -34,7 +38,7 @@ public class test_project {
         String romString = "ivxzlcdm";
         String [] calcArray = new String [arg.length()];
         Arrays.fill(calcArray, "");
-
+        
         for (String s: arg.toLowerCase().split("")) {
             try {
                 
@@ -63,8 +67,40 @@ public class test_project {
 
         }
         else if (contune == true & rom == true) {
-            romToLat (calcArray, o);
+        //-----------
+
+            if (rom(calcArray)) {romToLat (calcArray, o);}
+            else { throw new exception("Ошибка ввода данных");}
+
+        //-----------
+
+        
+
         }
+    }
+
+
+    public static boolean rom (String [] roms) {
+        boolean result = true;
+        ArrayList <String> romSym = new ArrayList<String>();
+            romSym.add("i");
+            romSym.add("ii");
+            romSym.add("iii");
+            romSym.add("iv");
+            romSym.add("v");
+            romSym.add("vi");
+            romSym.add("vii");
+            romSym.add("viii");
+            romSym.add("ix");
+            romSym.add("x");
+
+            for (String s: roms) {
+
+                if (!mathSymbols.contains(s)){
+                    if (!romSym.contains(s)) {result = false;}
+                }
+            }
+        return result;
     }
 
     public static void romToLat (String[] args, int arg) {
@@ -128,7 +164,10 @@ public class test_project {
             i++;
         }
         System.out.println("Результат: "+result+"\n");
-        start ();
+
+            start ();
+            
+  
     }
  
     public static void latCalc (String[] args, int arg, Boolean rom) throws exception{
@@ -154,7 +193,7 @@ public class test_project {
                     }
                 }
 
-                if (n>10 || n<1) {
+                if (n>10 || n <1) {
                      throw new exception("Ошибка ввода данных");
                 }
         }
