@@ -53,6 +53,7 @@ public class test_project {
                     rom = true;     
                     }
                 else{
+                    if (o>=2) {throw new exception("Ошибка ввода данных");}
                     o++;
                     calcArray [o] += s;
                     o++;
@@ -67,15 +68,8 @@ public class test_project {
 
         }
         else if (contune == true & rom == true) {
-        //-----------
-
             if (rom(calcArray)) {romToLat (calcArray, o);}
             else { throw new exception("Ошибка ввода данных");}
-
-        //-----------
-
-        
-
         }
     }
 
@@ -164,10 +158,7 @@ public class test_project {
             i++;
         }
         System.out.println("Результат: "+result+"\n");
-
-            start ();
-            
-  
+        start ();
     }
  
     public static void latCalc (String[] args, int arg, Boolean rom) throws exception{
@@ -175,7 +166,6 @@ public class test_project {
         int n=0;
     
         for (int i = 0; i <= arg; i++) {
-
                 if (i == 0 ) {
                     n = Integer.parseInt (args[i]);
                     result = n;
